@@ -46,7 +46,6 @@ public class LasfFMParser {
 
         albunsMaisOuvidos = getAlbunsMaisOuvidos();
 
-        faixasMaisOuvidas.forEach(System.out::println);
     }
 
     private static Map<Map.Entry<String, List<Faixa>>, Long> getAlbunsMaisOuvidos() {
