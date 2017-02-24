@@ -102,7 +102,7 @@ public class LasfFMParser {
     }
 
     private static SpreadsheetParser<LastFMFaixa> getLastFMFaixaSpreadsheetParser() throws URISyntaxException, FileNotFoundException {
-        URI path = LasfFMParser.class.getResource("/well_oliveira.xls").toURI();
+        URI path = LasfFMParser.class.getResource("/teste.xls").toURI();
         File entrada = new File(path);
         InputStream targetStream = new FileInputStream(entrada);
 
@@ -111,21 +111,6 @@ public class LasfFMParser {
         SpreadsheetParser<LastFMFaixa> parser = new SpreadsheetParser<>(LastFMFaixa.class, targetStream, entrada.getName());
         parser.setHeadersRows(0);
         return parser;
-    }
-
-    private static Map.Entry<String, List<Faixa>> getAlbumEntryNaBiblioteca(Faixa faixa) {
-
-        final String artista = faixa.getArtista();
-        final String album = faixa.getAlbum();
-
-        final Map.Entry<String, List<Faixa>> albumEntry = bibliotecaDeMusicas.get(artista)
-                .entrySet()
-                .stream()
-                .filter(c -> c.getKey().contains(album))
-                .findAny()
-                .get();
-
-        return Optional.of(albumEntry).orElseGet(null);
     }
 
     private static Faixa getFaixaNaBiblioteca(Faixa faixa) {
